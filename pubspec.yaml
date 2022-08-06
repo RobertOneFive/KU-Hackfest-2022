@@ -9,6 +9,7 @@ environment:
   sdk: ">=2.17.6 <3.0.0"
 
 dependencies:
+  bottom_navy_bar: ^6.0.0
   cupertino_icons: ^1.0.2
   feather_icons: ^1.2.0
   flutter:
@@ -16,7 +17,6 @@ dependencies:
   flutter_svg: ^1.1.2
   fluttericon: ^2.0.0
   font_awesome_flutter: ^10.1.0
-  persistent_bottom_nav_bar: ^4.0.2
   phosphor_flutter: ^1.4.0
 
 dev_dependencies:

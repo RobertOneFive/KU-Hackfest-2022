@@ -8,11 +8,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  final PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
+
+  int index = 0;
 
   @override
-  
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
@@ -205,71 +204,60 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: PersistentTabView(
-        context,
-        navBarStyle: NavBarStyle.style6,
-        resizeToAvoidBottomInset: true,
-        backgroundColor: AppColors.backgroundColor,
-        screens: [
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: index,
+        backgroundColor: const Color(0xff041F2B),
+        onItemSelected: (value) {
+          setState(() {
+            index = value;
+          });
+        },
+        items: [
+          BottomNavyBarItem(
+            icon: const Icon(Elusive.home),
+            title: const Text("Home"),
+            activeColor: Colors.white,
+            inactiveColor: Colors.white.withOpacity(0.4),
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: const Icon(Elusive.group),
+            title: const Text("Community"),
+            activeColor: Colors.white,
+            inactiveColor: Colors.white.withOpacity(0.4),
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: const Icon(MfgLabs.newspaper),
+            title: const Text("Channel"),
+            activeColor: Colors.white,
+            inactiveColor: Colors.white.withOpacity(0.4),
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: const Icon(PhosphorIcons.coin),
+            title: const Text("Coin"),
+            activeColor: Colors.white,
+            inactiveColor: Colors.white.withOpacity(0.4),
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: const Icon(Elusive.bell),
+            title: const Text("Notifications"),
+            activeColor: Colors.white,
+            inactiveColor: Colors.white.withOpacity(0.4),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+      body: PageView(
+        children: [
           MainScreen(),
           const SizedBox(),
           const SizedBox(),
           const SizedBox(),
           const SizedBox(),
         ],
-        items: [
-          PersistentBottomNavBarItem(
-            icon: const Icon(Elusive.home),
-            title: ("Home"),
-            activeColorPrimary: AppColors.mainSwatch,
-            inactiveColorPrimary: AppColors.whiteColor.withOpacity(0.75),
-            iconSize: 16,
-            textStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
-                  fontSize: 10,
-                ),
-          ),
-          PersistentBottomNavBarItem(
-            icon: const Icon(Elusive.group),
-            title: ("Community"),
-            activeColorPrimary: AppColors.mainSwatch,
-            inactiveColorPrimary: AppColors.whiteColor.withOpacity(0.75),
-            iconSize: 16,
-            textStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
-                  fontSize: 10,
-                ),
-          ),
-          PersistentBottomNavBarItem(
-            icon: const Icon(MfgLabs.newspaper),
-            title: ("Channel"),
-            activeColorPrimary: AppColors.mainSwatch,
-            inactiveColorPrimary: AppColors.whiteColor.withOpacity(0.75),
-            iconSize: 16,
-            textStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
-                  fontSize: 10,
-                ),
-          ),
-          PersistentBottomNavBarItem(
-            icon: const Icon(PhosphorIcons.coin),
-            title: ("Coin"),
-            activeColorPrimary: AppColors.mainSwatch,
-            inactiveColorPrimary: AppColors.whiteColor.withOpacity(0.75),
-            iconSize: 16,
-            textStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
-                  fontSize: 10,
-                ),
-          ),
-          PersistentBottomNavBarItem(
-            icon: const Icon(Elusive.bell),
-            title: ("Notifications"),
-            activeColorPrimary: AppColors.mainSwatch,
-            inactiveColorPrimary: AppColors.whiteColor.withOpacity(0.75),
-            iconSize: 16,
-            textStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
-                  fontSize: 10,
-                ),
-          ),
-        ],
-        controller: _controller,
       ),
     );
   }
