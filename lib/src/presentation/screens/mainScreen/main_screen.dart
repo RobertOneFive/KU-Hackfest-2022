@@ -1,11 +1,195 @@
 part of screens;
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  MainScreen({Key? key}) : super(key: key);
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
+      endDrawer: Drawer(
+        backgroundColor: AppColors.backgroundColor,
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          child: ListView(
+            children: [
+              const Text(
+                'Tour Place',
+                style: TextStyle(color: Colors.white),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'KU Premises',
+                  prefixIcon: Icon(
+                    FeatherIcons.mapPin,
+                    color: AppColors.whiteColor,
+                  ),
+                  hintStyle: const TextStyle(color: Colors.white),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                'Your Interest',
+                style: TextStyle(color: Colors.white),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CheckboxListTile(
+                controlAffinity: ListTileControlAffinity.leading,
+                value: true,
+                onChanged: (value) {},
+                title: Text(
+                  'Natural',
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                  ),
+                ),
+              ),
+              CheckboxListTile(
+                controlAffinity: ListTileControlAffinity.leading,
+                value: true,
+                onChanged: (value) {},
+                title: Text(
+                  'Fresh Environemnt',
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                  ),
+                ),
+              ),
+              CheckboxListTile(
+                controlAffinity: ListTileControlAffinity.leading,
+                value: true,
+                onChanged: (value) {},
+                title: Text(
+                  'Beauty of View',
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                  ),
+                ),
+              ),
+              CheckboxListTile(
+                controlAffinity: ListTileControlAffinity.leading,
+                value: true,
+                onChanged: (value) {},
+                title: Text(
+                  'Cool',
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                'Type of Tour',
+                style: TextStyle(color: Colors.white),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CheckboxListTile(
+                controlAffinity: ListTileControlAffinity.leading,
+                value: true,
+                onChanged: (value) {},
+                title: Text(
+                  'Random Visit',
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                  ),
+                ),
+              ),
+              CheckboxListTile(
+                controlAffinity: ListTileControlAffinity.leading,
+                value: true,
+                onChanged: (value) {},
+                title: Text(
+                  'Summer Holiday',
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                  ),
+                ),
+              ),
+              CheckboxListTile(
+                controlAffinity: ListTileControlAffinity.leading,
+                value: true,
+                onChanged: (value) {},
+                title: Text(
+                  'Virtual Picinic',
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                'Location of Tour',
+                style: TextStyle(color: Colors.white),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'Dhulikhel, Nepal',
+                  prefixIcon: Icon(
+                    FeatherIcons.mapPin,
+                    color: AppColors.whiteColor,
+                  ),
+                  hintStyle: const TextStyle(color: Colors.white),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                'Explore Location on Map',
+                style: TextStyle(color: Colors.white),
+              ),
+              Image.asset(
+                'assets/images/map2.png',
+                width: double.infinity,
+                height: 90,
+                fit: BoxFit.cover,
+              ),
+            ],
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          _key.currentState!.openEndDrawer();
+        },
+        label: Row(
+          children: const [
+            Text('Explore'),
+            SizedBox(width: 8),
+            Icon(FeatherIcons.chevronRight),
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -21,7 +205,7 @@ class MainScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(children: [
             Destinations(),
-            WhatsNewWidget(),
+            const WhatsNewWidget(),
           ]),
         ),
       ),
@@ -129,266 +313,278 @@ class DestinationCard extends StatelessWidget {
   final Map data;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 12),
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              Container(
-                height: 110,
-                width: 150,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      data['image'],
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushReplacement<void, void>(
+          context,
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => const StartTourScreen(),
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(right: 12),
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Container(
+                  height: 112,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
                     ),
-                    fit: BoxFit.cover,
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        data['image'],
+                      ),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                width: 150,
-                height: 155,
-                padding: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 10,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.whiteColor.withOpacity(0.20),
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
+                Container(
+                  width: 150,
+                  height: 160,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 10,
                   ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Overview',
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: 16,
-                            color: AppColors.greenColor,
+                  decoration: BoxDecoration(
+                    color: AppColors.whiteColor.withOpacity(0.20),
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Overview',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: 16,
+                              color: AppColors.greenColor,
+                            ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            PhosphorIcons.mapPin,
+                            color: AppColors.whiteColor.withOpacity(0.75),
                           ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          PhosphorIcons.mapPin,
-                          color: AppColors.whiteColor.withOpacity(0.75),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: Text(
-                            data['name'],
-                            style:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 16,
-                                      color: AppColors.whiteColor,
-                                    ),
+                          const SizedBox(
+                            width: 5,
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              PhosphorIcons.star,
-                              color: AppColors.whiteColor.withOpacity(0.75),
-                              size: 16,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            SizedBox(
-                              child: Text(
-                                'Special',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
-                                      fontSize: 14,
-                                      color: AppColors.whiteColor,
-                                    ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              PhosphorIcons.videoCamera,
-                              size: 12,
-                              color: AppColors.whiteColor.withOpacity(0.75),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            SizedBox(
-                              child: Text(
-                                'Trailer',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
-                                      fontSize: 14,
-                                      color: AppColors.whiteColor,
-                                    ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              FeatherIcons.tag,
-                              color: AppColors.whiteColor.withOpacity(0.75),
-                              size: 16,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            SizedBox(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Total Cost',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .copyWith(
-                                          fontSize: 10,
-                                          color: AppColors.whiteColor,
-                                        ),
-                                  ),
-                                  Text(
-                                    'NPR 120',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .copyWith(
-                                          fontSize: 14,
-                                          color: AppColors.whiteColor,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              FeatherIcons.tablet,
-                              size: 12,
-                              color: AppColors.whiteColor.withOpacity(0.75),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            SizedBox(
-                              child: Text(
-                                'Steps',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
-                                      fontSize: 14,
-                                      color: AppColors.whiteColor,
-                                    ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          PhosphorIcons.calendar,
-                          color: AppColors.whiteColor.withOpacity(0.75),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Book Your tour',
+                          SizedBox(
+                            width: 100,
+                            child: Text(
+                              data['name'],
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
-                                    fontSize: 10,
+                                    fontSize: 16,
                                     color: AppColors.whiteColor,
                                   ),
                             ),
-                            SizedBox(
-                              child: Text(
-                                'Bhaktapur Holidays',
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                PhosphorIcons.star,
+                                color: AppColors.whiteColor.withOpacity(0.75),
+                                size: 16,
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              SizedBox(
+                                child: Text(
+                                  'Special',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: 14,
+                                        color: AppColors.whiteColor,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                PhosphorIcons.videoCamera,
+                                size: 12,
+                                color: AppColors.whiteColor.withOpacity(0.75),
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              SizedBox(
+                                child: Text(
+                                  'Trailer',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: 14,
+                                        color: AppColors.whiteColor,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                FeatherIcons.tag,
+                                color: AppColors.whiteColor.withOpacity(0.75),
+                                size: 16,
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              SizedBox(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Total Cost',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .copyWith(
+                                            fontSize: 10,
+                                            color: AppColors.whiteColor,
+                                          ),
+                                    ),
+                                    Text(
+                                      'NPR 120',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1!
+                                          .copyWith(
+                                            fontSize: 14,
+                                            color: AppColors.whiteColor,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                FeatherIcons.tablet,
+                                size: 12,
+                                color: AppColors.whiteColor.withOpacity(0.75),
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              SizedBox(
+                                child: Text(
+                                  'Steps',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: 14,
+                                        color: AppColors.whiteColor,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            PhosphorIcons.calendar,
+                            color: AppColors.whiteColor.withOpacity(0.75),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Book Your tour',
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
-                                      fontSize: 14,
+                                      fontSize: 10,
                                       color: AppColors.whiteColor,
                                     ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                              SizedBox(
+                                child: Text(
+                                  'Bhaktapur Holidays',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        fontSize: 14,
+                                        color: AppColors.whiteColor,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Positioned(
-            top: 100,
-            right: 10,
-            child: CircleAvatar(
-              radius: 25,
-              backgroundColor: AppColors.backgroundColor.withOpacity(0.8),
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  FeatherIcons.bookmark,
-                  color: AppColors.greenColor,
+              ],
+            ),
+            Positioned(
+              top: 100,
+              right: 10,
+              child: CircleAvatar(
+                radius: 25,
+                backgroundColor: AppColors.backgroundColor.withOpacity(0.8),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    FeatherIcons.bookmark,
+                    color: AppColors.greenColor,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -404,8 +600,8 @@ class WhatsNewWidget extends StatelessWidget {
         color: AppColors.whiteColor.withOpacity(0.05),
         borderRadius: BorderRadius.circular(20),
       ),
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -430,7 +626,7 @@ class WhatsNewWidget extends StatelessWidget {
                           color: AppColors.whiteColor,
                         ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   SizedBox(
@@ -444,7 +640,7 @@ class WhatsNewWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Image.asset(

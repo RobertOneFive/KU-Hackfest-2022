@@ -12,6 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
       PersistentTabController(initialIndex: 0);
 
   @override
+  
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
@@ -209,12 +210,12 @@ class _HomeScreenState extends State<HomeScreen> {
         navBarStyle: NavBarStyle.style6,
         resizeToAvoidBottomInset: true,
         backgroundColor: AppColors.backgroundColor,
-        screens: const [
+        screens: [
           MainScreen(),
-          SizedBox(),
-          SizedBox(),
-          SizedBox(),
-          SizedBox(),
+          const SizedBox(),
+          const SizedBox(),
+          const SizedBox(),
+          const SizedBox(),
         ],
         items: [
           PersistentBottomNavBarItem(
