@@ -1,7 +1,9 @@
 library screens;
 
 import 'package:aifiverse/src/config/colors.dart';
+import 'package:aifiverse/src/presentation/screens/coinScreen/coin_screen.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:dotted_border/dotted_border.dart';
 
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
@@ -14,4 +16,4 @@ part 'presentation/screens/homeScreen/home_screen.dart';
 part 'presentation/screens/mainScreen/main_screen.dart';
 part 'presentation/screens/startTourScreen/start_tour_screen.dart';
 part 'presentation/screens/worldScreen/world_screen.dart';
-
+part 'presentation/screens/creatorScreen/creator_screen.dart';

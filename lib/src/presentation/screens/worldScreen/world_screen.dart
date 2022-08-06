@@ -9,7 +9,7 @@ class WorldScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.backgroundColor,
       ),
-      body: Center(child: Text('World Screen')),
+      body: const Center(child: Text('World Screen')),
     );
   }
 }

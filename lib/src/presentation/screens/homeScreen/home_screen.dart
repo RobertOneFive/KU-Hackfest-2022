@@ -11,6 +11,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int index = 0;
 
+  final PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -210,6 +211,9 @@ class _HomeScreenState extends State<HomeScreen> {
         onItemSelected: (value) {
           setState(() {
             index = value;
+            _pageController.animateToPage(value,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.ease);
           });
         },
         items: [
@@ -251,11 +255,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: PageView(
+        controller: _pageController,
+        physics: NeverScrollableScrollPhysics(),
         children: [
           MainScreen(),
           const SizedBox(),
-          const SizedBox(),
-          const SizedBox(),
+          CreatorScreen(),
+          const CoinScreen(),
           const SizedBox(),
         ],
       ),
