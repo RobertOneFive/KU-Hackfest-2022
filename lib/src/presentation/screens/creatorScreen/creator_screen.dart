@@ -1,7 +1,7 @@
 part of screens;
 
-class MainScreen extends StatelessWidget {
-  MainScreen({Key? key}) : super(key: key);
+class CreatorScreen extends StatelessWidget {
+  CreatorScreen({Key? key}) : super(key: key);
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   @override
@@ -12,166 +12,69 @@ class MainScreen extends StatelessWidget {
         backgroundColor: AppColors.backgroundColor,
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
-          child: ListView(
+          child: Column(
             children: [
-              const Text(
-                'Tour Place',
-                style: TextStyle(color: Colors.white),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: AppColors.greenColor,
+                      ),
+                      child: const Text(
+                        'Upload Environment',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Text(
+                      'Add Story',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(
-                height: 10,
+              SizedBox(
+                height: 30,
               ),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'KU Premises',
-                  prefixIcon: Icon(
-                    FeatherIcons.mapPin,
-                    color: AppColors.whiteColor,
-                  ),
-                  hintStyle: const TextStyle(color: Colors.white),
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+              DottedBorder(
+                color: Colors.white.withOpacity(0.1),
+                strokeWidth: 2,
+                child: SizedBox(
+                  height: 150,
+                  width: double.infinity,
+                  child: Center(
+                    child: Text(
+                      'Click to browse or\ndrag and drop your files',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white54,
+                      ),
+                    ),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                'Your Interest',
-                style: TextStyle(color: Colors.white),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                value: true,
-                onChanged: (value) {},
-                title: Text(
-                  'Natural',
-                  style: TextStyle(
-                    color: AppColors.whiteColor,
-                  ),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  'Next',
                 ),
-              ),
-              CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                value: true,
-                onChanged: (value) {},
-                title: Text(
-                  'Fresh Environemnt',
-                  style: TextStyle(
-                    color: AppColors.whiteColor,
-                  ),
-                ),
-              ),
-              CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                value: true,
-                onChanged: (value) {},
-                title: Text(
-                  'Beauty of View',
-                  style: TextStyle(
-                    color: AppColors.whiteColor,
-                  ),
-                ),
-              ),
-              CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                value: true,
-                onChanged: (value) {},
-                title: Text(
-                  'Cool',
-                  style: TextStyle(
-                    color: AppColors.whiteColor,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                'Type of Tour',
-                style: TextStyle(color: Colors.white),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                value: true,
-                onChanged: (value) {},
-                title: Text(
-                  'Random Visit',
-                  style: TextStyle(
-                    color: AppColors.whiteColor,
-                  ),
-                ),
-              ),
-              CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                value: true,
-                onChanged: (value) {},
-                title: Text(
-                  'Summer Holiday',
-                  style: TextStyle(
-                    color: AppColors.whiteColor,
-                  ),
-                ),
-              ),
-              CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                value: true,
-                onChanged: (value) {},
-                title: Text(
-                  'Virtual Picinic',
-                  style: TextStyle(
-                    color: AppColors.whiteColor,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                'Location of Tour',
-                style: TextStyle(color: Colors.white),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Dhulikhel, Nepal',
-                  prefixIcon: Icon(
-                    FeatherIcons.mapPin,
-                    color: AppColors.whiteColor,
-                  ),
-                  hintStyle: const TextStyle(color: Colors.white),
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                'Explore Location on Map',
-                style: TextStyle(color: Colors.white),
-              ),
-              Image.asset(
-                'assets/images/map2.png',
-                width: double.infinity,
-                height: 90,
-                fit: BoxFit.cover,
               ),
             ],
           ),
@@ -183,7 +86,7 @@ class MainScreen extends StatelessWidget {
         },
         label: Row(
           children: const [
-            Text('Explore'),
+            Text('Create'),
             SizedBox(width: 8),
             Icon(FeatherIcons.chevronRight),
           ],
@@ -203,9 +106,20 @@ class MainScreen extends StatelessWidget {
           end: Alignment.bottomCenter,
         )),
         child: SingleChildScrollView(
-          child: Column(children: [
-            Destinations(),
-            const WhatsNewWidget(),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            DDestinations(),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                'Visitors Engagement',
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+              ),
+            ),
           ]),
         ),
       ),
@@ -213,8 +127,8 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-class Destinations extends StatelessWidget {
-  Destinations({Key? key}) : super(key: key);
+class DDestinations extends StatelessWidget {
+  DDestinations({Key? key}) : super(key: key);
   final List<Map> destinations = [
     {
       'name': 'KU Premises',
@@ -270,7 +184,7 @@ class Destinations extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                'Best tour for you',
+                'Your Uploads',
                 style: Theme.of(context).textTheme.bodyText1!.copyWith(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -308,15 +222,15 @@ class Destinations extends StatelessWidget {
   }
 }
 
-class DestinationCard extends StatelessWidget {
-  const DestinationCard({Key? key, required this.data}) : super(key: key);
+class DDestinationCard extends StatelessWidget {
+  const DDestinationCard({Key? key, required this.data}) : super(key: key);
   final Map data;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: ((context) => const StartTourScreen())));
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: ((context) => const StartTourScreen())));
       },
       child: Container(
         margin: const EdgeInsets.only(right: 12),
@@ -581,72 +495,6 @@ class DestinationCard extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class WhatsNewWidget extends StatelessWidget {
-  const WhatsNewWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.whiteColor.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'What\'s New?',
-            style: Theme.of(context).textTheme.headline2!.copyWith(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.whiteColor,
-                ),
-          ),
-          Row(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'New User Offer!',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 14,
-                          color: AppColors.whiteColor,
-                        ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  SizedBox(
-                    width: 195,
-                    child: Text(
-                      'First user will get 25% discount\non fare for first 5 trips.\nLet\'s get started.',
-                      style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                            color: AppColors.whiteColor,
-                          ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Image.asset(
-                'assets/images/map.png',
-                width: 95,
-                height: 90,
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }
